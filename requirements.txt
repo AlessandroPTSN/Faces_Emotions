@@ -1,0 +1,8 @@
+fastapi
+io
+numpy
+tensorflow
+keras
+wandb
+PIL
+skimage
