@@ -4,4 +4,4 @@ tensorflow==2.6.0
 keras==2.6.0
 wandb
 pillow==9.2.0
-skimage
+scikit-image==0.19.2
