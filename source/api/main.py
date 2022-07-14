@@ -7,7 +7,9 @@ import wandb
 from PIL import Image
 from skimage import transform
 
-
+if report.failed and not hasattr(report, "wasxfail"): 
+     self.testsfailed += 1 
+   
 # name of the model artifact
 artifact_model_name = "emotions/model_export:latest"
 
