@@ -6,3 +6,4 @@ keras==2.6.0
 wandb
 pillow==9.2.0
 scikit-image==0.19.2
+anyio==3.6.1
