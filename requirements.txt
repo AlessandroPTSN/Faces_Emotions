@@ -1,8 +1,8 @@
-fastapi
-io
-numpy
-tensorflow
-keras
+fastapi==0.74.0
+io==3.3
+numpy==1.22.3
+tensorflow==2.6.0
+keras==2.6.0
 wandb
-PIL
+pillow==9.2.0
 skimage
