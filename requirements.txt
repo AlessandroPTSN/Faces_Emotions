@@ -9,4 +9,4 @@ anyio
 uvicorn
 pydantic
 tensorflow-cpu
-
+python-multipart
