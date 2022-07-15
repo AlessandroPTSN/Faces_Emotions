@@ -6,4 +6,6 @@ wandb
 pillow
 scikit-image
 anyio
+uvicorn
+h5py
 
