@@ -1,15 +1,14 @@
 from fastapi import FastAPI, UploadFile,File
 import io
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.models import Model
+#import tensorflow as tf
+#from tensorflow.keras.models import Model
+from keras.models import load_model
 import wandb
 from PIL import Image
 from skimage import transform
 
-if report.failed and not hasattr(report, "wasxfail"): 
-     self.testsfailed += 1 
-   
+
 # name of the model artifact
 artifact_model_name = "emotions/model_export:latest"
 
@@ -19,8 +18,8 @@ run = wandb.init(project="emotions",job_type="api")
 
 best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8c")
 
-modelwb = tf.keras.models.load_model(best_model.name)
-
+#modelwb = tf.keras.models.load_model(best_model.name)
+modelwb = load_model(best_model.name)
 
 def load(filename):
    np_image = Image.open(io.BytesIO(filename)) 
