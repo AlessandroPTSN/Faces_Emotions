@@ -8,5 +8,5 @@ scikit-image
 anyio
 uvicorn
 pydantic
-tensorflow
+tensorflow-cpu
 
