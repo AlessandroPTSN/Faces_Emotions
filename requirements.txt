@@ -1,7 +1,6 @@
 pytest
 fastapi
 numpy
-tensorflow-cpu
 keras
 wandb
 pillow
