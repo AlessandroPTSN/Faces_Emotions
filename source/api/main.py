@@ -47,11 +47,13 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 #face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
-#     ft = read_imagefile(ft)
+#    ft = read_imagefile(ft)
      foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
      faces = face_cascade.detectMultiScale(foto, 1.3, 3)
-     if faces == ():
-          color=cv2.resize(foto,(20,20))
+     #if faces == ():
+     #     color=cv2.resize(foto,(20,20))
+     if 1>2:
+          print("lol")
      else:
           for (x,y,w,h) in faces:
                cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
@@ -83,17 +85,18 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await file.read()
-    images = np.fromstring(img, np.uint8)
-    images = cv2.imdecode(images, cv2.IMREAD_COLOR)
+    #images = np.fromstring(img, np.uint8)
+    images = cv2.imdecode(img, cv2.IMREAD_COLOR)
     #images = np.array(Image.open(img))
     
     #images = np.array(Image.open(img))
     #images = np.fromstring(Image.open(img), np.uint8)
     #images = read_imagefile(img)
     
-    foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
-    faces = face_cascade.detectMultiScale(foto, 1.3, 3)
-    if faces == ():
+    #foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
+    #faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+    #if faces == ():
+    if 1>2:
         result = "Unrecognized Face"
     else:
           prediction = np.around(modelwb.predict(load2(images)), decimals=2)
