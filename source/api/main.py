@@ -75,7 +75,7 @@ async def say_hello():
 # run the model inference and use a face data structure via POST to the API.
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
-    img = await  file.read()
+    img = await file.read()
     images = np.array(Image.open(img))
     foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
