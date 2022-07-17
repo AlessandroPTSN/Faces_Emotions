@@ -83,12 +83,12 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await file.read()
-    img = np.fromstring(img, np.uint8)
+    images = np.fromstring(img, np.uint8)
     #images = np.array(Image.open(img))
     
     #images = np.array(Image.open(img))
     #images = np.fromstring(Image.open(img), np.uint8)
-    images = read_imagefile(img)
+    #images = read_imagefile(img)
     foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
     if faces == ():
