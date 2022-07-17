@@ -84,11 +84,13 @@ async def say_hello():
 async def root(file: UploadFile = File(...)):
     img = await file.read()
     images = np.fromstring(img, np.uint8)
+    images = cv2.imdecode(images, cv2.IMREAD_COLOR)
     #images = np.array(Image.open(img))
     
     #images = np.array(Image.open(img))
     #images = np.fromstring(Image.open(img), np.uint8)
     #images = read_imagefile(img)
+    
     foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
     if faces == ():
