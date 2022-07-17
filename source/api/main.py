@@ -33,7 +33,12 @@ best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8
 #modelwb = tf.keras.models.load_model(best_model.name)
 modelwb = load_model(best_model.name)
 
-
+del(files)
+del(artifact_model_name)
+del(run)
+del(best_model)
+     
+     
 #face_cascade = cv2.CascadeClassifier("/app/haarcascade_frontalface_default.xml")
 face_cascade = cv2.CascadeClassifier(str(a))
 
