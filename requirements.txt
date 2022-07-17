@@ -10,3 +10,4 @@ uvicorn
 pydantic
 tensorflow-cpu
 python-multipart
+cv2
