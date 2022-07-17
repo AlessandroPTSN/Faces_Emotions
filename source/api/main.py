@@ -33,27 +33,28 @@ best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8
 #modelwb = tf.keras.models.load_model(best_model.name)
 modelwb = load_model(best_model.name)
 
-del(files)
-del(artifact_model_name)
-del(run)
-del(best_model)
+
      
      
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 #face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
-   foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
-   foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
-   faces = face_cascade.detectMultiScale(foto, 1.3, 3)
-   for (x,y,w,h) in faces:
-       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
-       color = foto[y:y+h, x:x+w]
-   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   #if color[1,1,0] == 255:
-   color=cv2.resize(color,(20,20))
-   return color
+     foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+     if faces == ():
+          color=cv2.resize(foto,(20,20))
+     else:  
+     for (x,y,w,h) in faces:
+          cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
+          color = foto[y:y+h, x:x+w]
+     color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+#if color[1,1,0] == 255:
+     color=cv2.resize(color,(20,20))
+     return color
       
+     
+     
 #def load(filename):
 #   np_image = Image.open(io.BytesIO(filename)) 
 #   np_image = np.array(np_image).astype('float32')
@@ -76,7 +77,11 @@ async def root(file: UploadFile = File(...)):
     img = await  file.read()
     prediction = np.around(modelwb.predict(load2(cv2.imread(img))), decimals=2)
     string = ','.join(str(x) for x in prediction)
-    if string == "[1. 0. 0. 0. 0. 0.]":
+    foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+    faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+    if faces == ():
+        result = "Unrecognized Face"
+    elif string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
     elif string == "[0. 1. 0. 0. 0. 0.]":
         result = "Sad"
@@ -88,6 +93,4 @@ async def root(file: UploadFile = File(...)):
         result = "Fear"
     elif string == "[0. 0. 0. 0. 0. 1.]":
         result = "Angry"    
-    else:     
-        result = "Unrecognized Face"
     return result
