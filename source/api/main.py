@@ -70,6 +70,6 @@ async def root(file: UploadFile = File(...)):
         result = "Fear"
     elif string == "[0. 0. 0. 0. 0. 1.]":
         result = "Angry"    
-    else     
+    else:     
         result = "Unrecognized Face"
     return result
