@@ -75,22 +75,23 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    prediction = np.around(modelwb.predict(load2(cv2.imread(img))), decimals=2)
-    string = ','.join(str(x) for x in prediction)
-    foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+    foto=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
     if faces == ():
         result = "Unrecognized Face"
-    elif string == "[1. 0. 0. 0. 0. 0.]":
-        result = "Surprise"
-    elif string == "[0. 1. 0. 0. 0. 0.]":
-        result = "Sad"
-    elif string == "[0. 0. 1. 0. 0. 0.]":
-        result = "Neutral"        
-    elif string == "[0. 0. 0. 1. 0. 0.]":
-        result = "Happy"
-    elif string == "[0. 0. 0. 0. 1. 0.]":
-        result = "Fear"
-    elif string == "[0. 0. 0. 0. 0. 1.]":
-        result = "Angry"    
+    else:
+          prediction = np.around(modelwb.predict(load2(cv2.imread(img))), decimals=2)
+          string = ','.join(str(x) for x in prediction)
+          if string == "[1. 0. 0. 0. 0. 0.]":
+               result = "Surprise"
+          elif string == "[0. 1. 0. 0. 0. 0.]":
+               result = "Sad"
+          elif string == "[0. 0. 1. 0. 0. 0.]":
+               result = "Neutral"        
+          elif string == "[0. 0. 0. 1. 0. 0.]":
+               result = "Happy"
+          elif string == "[0. 0. 0. 0. 1. 0.]":
+               result = "Fear"
+          elif string == "[0. 0. 0. 0. 0. 1.]":
+               result = "Angry"    
     return result
