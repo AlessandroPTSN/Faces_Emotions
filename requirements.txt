@@ -10,5 +10,5 @@ uvicorn
 pydantic
 tensorflow-cpu
 python-multipart
-python3-opencv
+opencv-python-headless
 pathlib
