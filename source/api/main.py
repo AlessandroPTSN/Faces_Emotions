@@ -8,7 +8,9 @@ import wandb
 from PIL import Image
 from skimage import transform
 import cv2
+import os
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import pathlib
 from pathlib import Path
