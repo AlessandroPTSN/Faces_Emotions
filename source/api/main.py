@@ -31,6 +31,7 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 def load2(ft):
    #foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
    #foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
    faces = face_cascade.detectMultiScale(ft, 1.3, 3)
    for (x,y,w,h) in faces:
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
