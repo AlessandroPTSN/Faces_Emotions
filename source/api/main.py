@@ -14,7 +14,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import pathlib
 from pathlib import Path
-files = sorted(pathlib.Path('.').glob('**/*.xml'))
+files = sorted(pathlib.Path('.').glob('**/haarcascade_frontalface_default.xml'))
 
 for i in files:
      a = i
