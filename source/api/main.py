@@ -60,14 +60,16 @@ async def root(file: UploadFile = File(...)):
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
-    if string == "[0. 1. 0. 0. 0. 0.]":
+    elif string == "[0. 1. 0. 0. 0. 0.]":
         result = "Sad"
-    if string == "[0. 0. 1. 0. 0. 0.]":
+    elif string == "[0. 0. 1. 0. 0. 0.]":
         result = "Neutral"        
-    if string == "[0. 0. 0. 1. 0. 0.]":
+    elif string == "[0. 0. 0. 1. 0. 0.]":
         result = "Happy"
-    if string == "[0. 0. 0. 0. 1. 0.]":
+    elif string == "[0. 0. 0. 0. 1. 0.]":
         result = "Fear"
-    if string == "[0. 0. 0. 0. 0. 1.]":
-        result = "Angry"        
+    elif string == "[0. 0. 0. 0. 0. 1.]":
+        result = "Angry"    
+    else     
+        result = "Unrecognized Face"
     return result
