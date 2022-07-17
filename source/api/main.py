@@ -60,7 +60,9 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    prediction = np.around(modelwb.predict(load2(cv2.imread(str(img)))), decimals=2)
+    img = np.fromstring(img, np.uint8)
+    img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+    prediction = np.around(modelwb.predict(load2(img)), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
