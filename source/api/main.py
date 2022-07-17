@@ -7,7 +7,7 @@ from keras.models import load_model
 import wandb
 from PIL import Image
 from skimage import transform
-import csv
+import cv2
 
 # name of the model artifact
 artifact_model_name = "emotions/model_export:latest"
