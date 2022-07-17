@@ -12,3 +12,4 @@ tensorflow-cpu
 python-multipart
 opencv-python-headless
 pathlib
+os_sys
