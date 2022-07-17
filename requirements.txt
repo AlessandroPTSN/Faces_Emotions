@@ -3,8 +3,6 @@ fastapi
 numpy
 keras
 wandb
-pillow
-scikit-image
 anyio
 uvicorn
 pydantic
