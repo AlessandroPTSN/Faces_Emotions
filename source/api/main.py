@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile,File
 import io
+from io import BytesIO
 import numpy as np
 #import tensorflow as tf
 #from tensorflow.keras.models import Model
