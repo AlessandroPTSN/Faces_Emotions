@@ -12,12 +12,12 @@ import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-import pathlib
-from pathlib import Path
-files = sorted(pathlib.Path('.').glob('**/haarcascade_frontalface_default.xml'))
+#import pathlib
+#from pathlib import Path
+#files = sorted(pathlib.Path('.').glob('**/haarcascade_frontalface_default.xml'))
 
-for i in files:
-     a = i
+#for i in files:
+#     a = i
 
 
 
@@ -39,8 +39,8 @@ del(run)
 del(best_model)
      
      
-#face_cascade = cv2.CascadeClassifier("/app/haarcascade_frontalface_default.xml")
-face_cascade = cv2.CascadeClassifier(str(a))
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+#face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
    foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
