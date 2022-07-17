@@ -11,3 +11,4 @@ pydantic
 tensorflow-cpu
 python-multipart
 opencv-python
+pathlib
