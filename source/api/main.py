@@ -5,7 +5,7 @@ import numpy as np
 #from tensorflow.keras.models import Model
 from keras.models import load_model
 import wandb
-#from PIL import Image
+from PIL import Image
 #from skimage import transform
 import cv2
 import os
@@ -40,7 +40,8 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 #face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
-     foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+     images = np.array(Image.open(ft))
+     foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
      faces = face_cascade.detectMultiScale(foto, 1.3, 3)
      if faces == ():
           color=cv2.resize(foto,(20,20))
@@ -75,7 +76,8 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    foto=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    images = np.array(Image.open(img))
+    foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
     if faces == ():
         result = "Unrecognized Face"
