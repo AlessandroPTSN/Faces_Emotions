@@ -9,6 +9,16 @@ from PIL import Image
 from skimage import transform
 import cv2
 
+
+import pathlib
+from pathlib import Path
+files = sorted(pathlib.Path('.').glob('**/*.xml'))
+
+for i in files:
+     a = i
+
+
+
 # name of the model artifact
 artifact_model_name = "emotions/model_export:latest"
 
@@ -22,7 +32,8 @@ best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8
 modelwb = load_model(best_model.name)
 
 
-face_cascade = cv2.CascadeClassifier("/app/haarcascade_frontalface_default.xml")
+#face_cascade = cv2.CascadeClassifier("/app/haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
    foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
