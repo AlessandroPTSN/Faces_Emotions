@@ -48,9 +48,9 @@ def load2(ft):
           for (x,y,w,h) in faces:
                cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
                color = foto[y:y+h, x:x+w]
-     color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+          color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
 #if color[1,1,0] == 255:
-     color=cv2.resize(color,(20,20))
+          color=cv2.resize(color,(20,20))
      return color
       
      
