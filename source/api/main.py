@@ -40,7 +40,7 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 #face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
-     images = np.array(Image.open(ft))
+     #images = np.array(Image.open(ft))
      foto=cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
      faces = face_cascade.detectMultiScale(foto, 1.3, 3)
      if faces == ():
@@ -82,7 +82,7 @@ async def root(file: UploadFile = File(...)):
     if faces == ():
         result = "Unrecognized Face"
     else:
-          prediction = np.around(modelwb.predict(load2(cv2.imread(img))), decimals=2)
+          prediction = np.around(modelwb.predict(load2(images)), decimals=2)
           string = ','.join(str(x) for x in prediction)
           if string == "[1. 0. 0. 0. 0. 0.]":
                result = "Surprise"
