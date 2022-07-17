@@ -39,7 +39,7 @@ modelwb = load_model(best_model.name)
 def load(filename):
    np_image = Image.open(io.BytesIO(filename)) 
    np_image = np.array(np_image).astype('float32')
-   #np_image = transform.resize(np_image, (20, 20, 1))
+   np_image = transform.resize(np_image, (600, 600, 1))
    np_image = np.expand_dims(np_image, axis=0)
    return np_image
      
