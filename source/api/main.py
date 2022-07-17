@@ -37,17 +37,17 @@ modelwb = load_model(best_model.name)
 
 
 
-def read_imagefile(file) -> Image.Image:
-    image = Image.open(BytesIO(file))
-    image = np.array(image).astype('float32')
-    return image
+#def read_imagefile(file) -> Image.Image:
+#    image = Image.open(BytesIO(file))
+#    image = np.array(image).astype('float32')
+#    return image
      
      
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 #face_cascade = cv2.CascadeClassifier(str(a))
 
 def load2(ft):
-     ft = read_imagefile(ft)
+#     ft = read_imagefile(ft)
      foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
      faces = face_cascade.detectMultiScale(foto, 1.3, 3)
      if faces == ():
@@ -83,6 +83,7 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await file.read()
+    img = np.fromstring(img, np.uint8)
     #images = np.array(Image.open(img))
     
     #images = np.array(Image.open(img))
