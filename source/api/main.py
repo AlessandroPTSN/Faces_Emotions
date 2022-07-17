@@ -7,7 +7,7 @@ from keras.models import load_model
 import wandb
 from PIL import Image
 from skimage import transform
-
+import csv
 
 # name of the model artifact
 artifact_model_name = "emotions/model_export:latest"
@@ -21,6 +21,21 @@ best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8
 #modelwb = tf.keras.models.load_model(best_model.name)
 modelwb = load_model(best_model.name)
 
+
+face_cascade = cv2.CascadeClassifier("/app/haarcascade_frontalface_default.xml")
+
+def load2(ft):
+   foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+   foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+   faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+   for (x,y,w,h) in faces:
+       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
+       color = foto[y:y+h, x:x+w]
+   color=cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
+   if color[1,1,0] == 255:
+       color=cv2.resize(color,(20,20))
+   return color
+      
 def load(filename):
    np_image = Image.open(io.BytesIO(filename)) 
    np_image = np.array(np_image).astype('float32')
@@ -41,7 +56,7 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    prediction = np.around(modelwb.predict(load(img)), decimals=2)
+    prediction = np.around(modelwb.predict(load(load2(cv2.imread(img)))), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
