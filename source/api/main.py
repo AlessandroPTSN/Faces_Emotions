@@ -39,7 +39,7 @@ modelwb = load_model(best_model.name)
 
 def read_imagefile(file) -> Image.Image:
     image = Image.open(BytesIO(file))
-    image = np.array(np_image).astype('float32')
+    image = np.array(image).astype('float32')
     return image
      
      
