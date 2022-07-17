@@ -40,12 +40,14 @@ def load2(ft):
    color=cv2.resize(color,(20,20))
    return color
       
-#def load(filename):
-#   np_image = Image.open(io.BytesIO(filename)) 
-#   np_image = np.array(np_image).astype('float32')
-#   np_image = transform.resize(np_image, (20, 20, 1))
-#   np_image = np.expand_dims(np_image, axis=0)
-#   return np_image
+
+
+def load(filename):
+   np_image = Image.open(io.BytesIO(filename)) 
+   np_image = np.array(np_image).astype('float32')
+   np_image = transform.resize(np_image, (600, 600, 3))
+   np_image = np.expand_dims(np_image, axis=0)
+   return np_image
 
 # Instantiate the app.
 app = FastAPI()
@@ -60,22 +62,18 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    img = np.fromstring(img, np.uint8)
-    img = cv2.imdecode(img, cv2.IMREAD_COLOR)
-    prediction = np.around(modelwb.predict(load2(img)), decimals=2)
+    prediction = np.around(modelwb.predict(load2(load(img))), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
-    elif string == "[0. 1. 0. 0. 0. 0.]":
+    if string == "[0. 1. 0. 0. 0. 0.]":
         result = "Sad"
-    elif string == "[0. 0. 1. 0. 0. 0.]":
+    if string == "[0. 0. 1. 0. 0. 0.]":
         result = "Neutral"        
-    elif string == "[0. 0. 0. 1. 0. 0.]":
+    if string == "[0. 0. 0. 1. 0. 0.]":
         result = "Happy"
-    elif string == "[0. 0. 0. 0. 1. 0.]":
+    if string == "[0. 0. 0. 0. 1. 0.]":
         result = "Fear"
-    elif string == "[0. 0. 0. 0. 0. 1.]":
-        result = "Angry"    
-    else:     
-        result = "Unrecognized Face"
+    if string == "[0. 0. 0. 0. 0. 1.]":
+        result = "Angry"        
     return result
