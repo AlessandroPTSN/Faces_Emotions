@@ -1,12 +1,12 @@
 from fastapi import FastAPI, UploadFile,File
-import io
+#import io
 import numpy as np
 #import tensorflow as tf
 #from tensorflow.keras.models import Model
 from keras.models import load_model
 import wandb
-from PIL import Image
-from skimage import transform
+#from PIL import Image
+#from skimage import transform
 import cv2
 import os
 
