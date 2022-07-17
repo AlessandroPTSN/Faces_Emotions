@@ -59,11 +59,16 @@ def load2(ft):
                cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
                color = foto[y:y+h, x:x+w]
           color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-#if color[1,1,0] == 255:
-          color=cv2.resize(color,(20,20))
+          if color[1,1,0] == 255:
+               color=cv2.resize(color,(20,20))
      return color
       
      
+     
+def prepare(image):
+    IMG_SIZE = 600
+    new_array = cv2.resize(image, (IMG_SIZE, IMG_SIZE)) 
+    return new_array.reshape(-1, IMG_SIZE,IMG_SIZE,3)
      
 #def load(filename):
 #   np_image = Image.open(io.BytesIO(filename)) 
@@ -85,8 +90,10 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await file.read()
+    img = np.fromstring(img, np.uint8)
+    images = cv2.imdecode(img, cv2.IMREAD_COLOR).astype(np.float32)
     #images = np.fromstring(img, np.uint8)
-    images = cv2.imdecode(img, cv2.IMREAD_COLOR)
+    #images = cv2.imdecode(img, cv2.IMREAD_COLOR)
     #images = np.array(Image.open(img))
     
     #images = np.array(Image.open(img))
@@ -99,7 +106,7 @@ async def root(file: UploadFile = File(...)):
     if 1>2:
         result = "Unrecognized Face"
     else:
-          prediction = np.around(modelwb.predict(load2(images)), decimals=2)
+          prediction = np.around(modelwb.predict(load2(prepare(images))), decimals=2)
           string = ','.join(str(x) for x in prediction)
           if string == "[1. 0. 0. 0. 0. 0.]":
                result = "Surprise"
