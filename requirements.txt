@@ -3,7 +3,6 @@ fastapi
 numpy
 keras
 wandb
-anyio
 uvicorn
 pydantic
 tensorflow-cpu
