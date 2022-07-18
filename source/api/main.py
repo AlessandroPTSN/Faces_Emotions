@@ -22,25 +22,25 @@ run = wandb.init(project="emotions",job_type="api")
 
 best_model = wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8c")
 
-#modelwb = tf.keras.models.load_model(best_model.name)
+
 modelwb = load_model(best_model.name)
 
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
+#def load2(ft):
+#   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
+#   faces = face_cascade.detectMultiScale(ft, 1.3, 3)
+#   for (x,y,w,h) in faces:
+#       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
+#       color = foto[y:y+h, x:x+w]
+#   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+#   #if color[1,1,0] == 255:
+#   color=cv2.resize(color,(20,20))
+#   return color
+
 def load2(ft):
-   #foto_=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
-   #foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
-   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
-   faces = face_cascade.detectMultiScale(ft, 1.3, 3)
-   for (x,y,w,h) in faces:
-       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
-       color = foto[y:y+h, x:x+w]
-   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   #if color[1,1,0] == 255:
-   color=cv2.resize(color,(20,20))
    return color
-      
 
 
 def load(filename):
