@@ -49,8 +49,8 @@ def load2(ft):
 
 def load(filename):
    image_stream = io.BytesIO(filename)
-   image_stream.write(connection.read(image_len))
-   image_stream.seek(0)
+   #image_stream.write(connection.read(image_len))
+   #image_stream.seek(0)
    file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
    img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
    
