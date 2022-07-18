@@ -35,8 +35,9 @@ def load2(ft):
 
 
 def load2(ft):
-   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
-   #foto = ft
+   #ft = ft[:, :, 0]
+   #foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
+   foto = ft
    faces = face_cascade.detectMultiScale(ft, 1.3, 3)
    for (x,y,w,h) in faces:
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
