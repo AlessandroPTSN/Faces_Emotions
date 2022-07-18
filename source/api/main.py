@@ -32,7 +32,7 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 def load3(gray):
    imagee = np.expand_dims(transform.resize(np.array(gray).astype('float32'), (20, 20, 1)), axis=0)
-   return color
+   return imagee
 
 
 def load2(ft):
