@@ -30,7 +30,8 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 
 
-def load2(ft):
+def load3(gray):
+   imagee = np.expand_dims(transform.resize(np.array(gray).astype('float32'), (20, 20, 1)), axis=0)
    return color
 
 
@@ -46,6 +47,7 @@ def load2(ft):
    color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
    #if color[1,1,0] == 255:
    color=cv2.resize(color,(20,20))
+   color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
    return color
 
 
@@ -86,7 +88,7 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    prediction = np.around(modelwb.predict(load2(load(img))), decimals=2)
+    prediction = np.around(modelwb.predict(load2(load2(load(img)))), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
