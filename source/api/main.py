@@ -52,7 +52,7 @@ def load(filename):
    #image_stream.write(connection.read(image_len))
    #image_stream.seek(0)
    
-   np_image = cv2.imdecode(np.frombuffer(image_stream.read(), np.uint8), 1)
+   np_image = cv2.imdecode(np.frombuffer(image_stream.read(), np.uint8), cv2.IMREAD_COLOR)
    
    #@#file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
    #@#np_image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
