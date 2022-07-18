@@ -7,7 +7,7 @@ import numpy as np
 from keras.models import load_model
 import wandb
 from PIL import Image
-from skimage import transform
+from skimage import transform 
 import cv2
 import os
 
