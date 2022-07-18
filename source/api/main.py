@@ -26,7 +26,7 @@ modelwb = load_model(wandb.restore('model.h5', run_path="alessandroptsn/emotions
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-color = foto[:,:]
+color = 0
 
 
 #def load3(gray):
