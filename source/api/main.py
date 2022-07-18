@@ -37,8 +37,9 @@ def load2(ft):
 def load2(ft):
    #ft = ft[:, :, 0]
    #foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
-   foto = ft
-   faces = face_cascade.detectMultiScale(ft, 1.3, 3)
+   foto=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+   #foto = ft
+   faces = face_cascade.detectMultiScale(foto, 1.3, 3)
    for (x,y,w,h) in faces:
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
        color = foto[y:y+h, x:x+w]
@@ -49,11 +50,13 @@ def load2(ft):
 
 
 def load(filename):
-   image_stream = io.BytesIO(filename)
+   image_stream = BytesIO(filename)
+   #image_stream = io.BytesIO(filename)
    #image_stream.write(connection.read(image_len))
    #image_stream.seek(0)
    
-   np_image = cv2.imdecode(np.frombuffer(image_stream.read(), np.uint8), cv2.IMREAD_COLOR)
+   np_image = cv2.imdecode(np.frombuffer(image_stream.read(), np.uint8), 1)
+   #np_image = cv2.imdecode(np.frombuffer(image_stream.read(), np.uint8), cv2.IMREAD_COLOR)
    
    #@#file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
    #@#np_image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
