@@ -35,20 +35,20 @@ def load3(gray):
    return imagee
 
 
-def load2(ft):
-   #ft = ft[:, :, 0]
-   #foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
-   foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
-   #foto = ft
-   faces = face_cascade.detectMultiScale(foto, 1.3, 3)
-   for (x,y,w,h) in faces:
-       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
-       color = foto[y:y+h, x:x+w]
-   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   #if color[1,1,0] == 255:
-   color=cv2.resize(color,(20,20))
-   color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
-   return color
+#def load2(ft):
+#   #ft = ft[:, :, 0]
+#   #foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
+#   foto=cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
+#   #foto = ft
+#   faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+#   for (x,y,w,h) in faces:
+#       cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
+#       color = foto[y:y+h, x:x+w]
+#   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+#   #if color[1,1,0] == 255:
+#   color=cv2.resize(color,(20,20))
+#   color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
+#   return color
 
 
 def load(filename):
@@ -88,7 +88,22 @@ async def say_hello():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     img = await  file.read()
-    prediction = np.around(modelwb.predict(load2(load2(load(img)))), decimals=2)
+      
+    foto=cv2.cvtColor(load(img), cv2.COLOR_BGR2RGB)
+    foto = ft
+    faces = face_cascade.detectMultiScale(foto, 1.3, 3)
+    for (x,y,w,h) in faces:
+        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
+        color = foto[y:y+h, x:x+w]
+    color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+    #if color[1,1,0] == 255:
+    color=cv2.resize(color,(20,20))
+    color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
+ 
+      
+      
+    #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
+    prediction = np.around(modelwb.predict(load3(color)), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
