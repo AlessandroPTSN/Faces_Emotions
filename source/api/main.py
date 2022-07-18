@@ -35,13 +35,13 @@ def load2(ft):
 
 
 def load2(ft):
-#   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
-   foto = ft
+   foto= cv2.cvtColor(ft, cv2.COLOR_GRAY2BGR)
+   #foto = ft
    faces = face_cascade.detectMultiScale(ft, 1.3, 3)
    for (x,y,w,h) in faces:
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
        color = foto[y:y+h, x:x+w]
-#   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
+   color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
    #if color[1,1,0] == 255:
    color=cv2.resize(color,(20,20))
    return color
@@ -50,7 +50,11 @@ def load2(ft):
 def load(filename):
    np_image = Image.open(io.BytesIO(filename)) 
    #np_image = np.array(np_image).astype('float32')
-   np_image = np.array(np_image).astype(np.uint8)
+   
+   #np_image = np.array(np_image).astype(np.uint8)
+   #np_image = cv2.imdecode(np.frombuffer(io_buf.getbuffer(), np.uint8), -1)
+   np_image = cv2.cvtColor(np.array(np_image), cv2.COLOR_RGB2BGR)
+   
    #np_image = transform.resize(np_image, (600, 600, 3))
    #np_image = np.expand_dims(np_image, axis=0)
    return np_image
