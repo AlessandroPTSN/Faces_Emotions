@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile,File
-import io
+#import io
 from io import BytesIO 
 import numpy as np
 #import tensorflow as tf
