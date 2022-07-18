@@ -48,12 +48,19 @@ def load2(ft):
 
 
 def load(filename):
-   np_image = Image.open(io.BytesIO(filename)) 
+   image_stream = io.BytesIO(filename)
+   image_stream.write(connection.read(image_len))
+   image_stream.seek(0)
+   file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
+   img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
+   
+   #np_image = Image.open(io.BytesIO(filename)) ###################
    #np_image = np.array(np_image).astype('float32')
    
    #np_image = np.array(np_image).astype(np.uint8)
    #np_image = cv2.imdecode(np.frombuffer(io_buf.getbuffer(), np.uint8), -1)
-   np_image = cv2.cvtColor(np.array(np_image), cv2.COLOR_RGB2BGR)
+   #np_image = cv2.cvtColor(np.array(np_image), cv2.COLOR_RGB2BGR)###########
+   #img_np = cv2.imdecode(nparr, cv2.CV_LOAD_IMAGE_COLOR) #TESTE###########
    
    #np_image = transform.resize(np_image, (600, 600, 3))
    #np_image = np.expand_dims(np_image, axis=0)
