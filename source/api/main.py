@@ -90,7 +90,7 @@ async def root(file: UploadFile = File(...)):
     img = await  file.read()
       
     foto=cv2.cvtColor(load(img), cv2.COLOR_BGR2RGB)
-    foto = ft
+    foto = load(img)
     faces = face_cascade.detectMultiScale(foto, 1.3, 3)
     for (x,y,w,h) in faces:
         cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
