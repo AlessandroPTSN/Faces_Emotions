@@ -110,7 +110,7 @@ async def say_hello():
 async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
-    prediction = np.around(modelwb.predict(load(img)), decimals=2)
+    prediction = np.around(modelwb.predict(load(img)), decimals=1)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
