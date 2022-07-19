@@ -22,8 +22,7 @@ import cv2
 
 #modelwb = load_model(best_model.name)
 
-#modelwb = load_model(wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8c").name)
-modelwb =  wandb.restore('modell.h5', run_path="alessandroptsn/uncategorized/35r2qcuc")
+modelwb = load_model(wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8c").name)
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
@@ -110,7 +109,7 @@ async def say_hello():
 async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
-    prediction = np.around(modelwb.predict(load(img)), decimals=1)
+    prediction = np.around(modelwb.predict(load(img)), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Surprise"
