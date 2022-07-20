@@ -66,7 +66,8 @@ http://127.0.0.1:8000/docs
 
 The screenshot below show a view of the API docs.
 
-![image](https://user-images.githubusercontent.com/50224653/179810307-40c1738b-0244-4bf8-a8e8-666a8ad6f592.png)
+![image](https://user-images.githubusercontent.com/50224653/179877391-7d590590-7603-4435-a5c9-45289f853218.png)
+
 
 
 For test the API, please run:
