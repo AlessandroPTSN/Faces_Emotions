@@ -24,7 +24,9 @@ import cv2
 
 #modelwb = load_model(wandb.restore('model.h5', run_path="alessandroptsn/emotions/skt69t8c").name)
 
-modelwb = load_model(wandb.restore('model_.h5', run_path="alessandroptsn/uncategorized/2joxlwx7").name)
+#modelwb = load_model(wandb.restore('model_.h5', run_path="alessandroptsn/uncategorized/2joxlwx7").name)
+modelwb = load_model(wandb.restore('modell.h5', run_path="alessandroptsn/uncategorized/35r2qcuc").name)
+
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
