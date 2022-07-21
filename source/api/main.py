@@ -56,14 +56,27 @@ def load(filename):
 
 def generate_html_response():
     html_content = """
-    <html>
-        <head>
-            <title>Some HTML in here</title>
-        </head>
-        <body>
-            <h1>Look ma! HTML!</h1>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+   <meta charset="UTF-8">
+   <style>
+   h2 {text-align: center;}
+   p {text-align: center;}
+   a {text-align: center;}
+   </style>
+   <body>
+
+   <section class="w3-container w3-center w3-content" style="max-width:600px">
+    <h2 class="w3-wide">Faces Emotions</h2>
+     <p class="w3-opacity"><i>A API created by Alessandro Pereira</i></p>
+     <p class="w3-justify">This project consists of building a neural network model that classifies the emotion that a face shows in a given photo. The neural network consists of multiple ReLU layers and a Softmax layer to classify the emotion. For more information about the work, files and API can be found in the links below:</p>
+   <p><a href="https://github.com/AlessandroPTSN/Faces_Emotions">Github</a> <a href="https://medium.com/@alessandro.pereira.700">Mediun</a> <a href="faces-emotions.herokuapp.com/docs">API</a> <a href="https://colab.research.google.com/drive/11px62q8u6YapccCGGHS6JgX9dDLWqrVK?usp=sharing">Colab</a> </p>
+
+   </section>
+
+
+   </body>
+</html>
     """
     return HTMLResponse(content=html_content, status_code=200)
 
