@@ -51,6 +51,7 @@ def load(filename):
    color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
 
    imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (48, 48, 1)), axis=0)
+   color = 0
    return imagee
 
 
@@ -97,9 +98,14 @@ async def read_items():
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
     global result
+    global color
+    color = 0
+    result = ""
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
     prediction = np.around(modelwb.predict(load(img)), decimals=2)
+    color = 0
+    result = ""
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
         result = "Angry"
