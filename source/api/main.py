@@ -74,7 +74,7 @@ async def root(file: UploadFile = File(...)):
     color = 0
     result = ""
     img = await  file.read()   
-    string = ','.join(str(x) for x in np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2))
+    string = ','.join(str(x) for x in np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2)) 
     color = 0
     result = ""
     if string == "[1. 0. 0. 0. 0. 0.]":
