@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile,File
 from io import BytesIO 
 import numpy as np
 from keras.models import load_model
-#import wandb
+import wandb
 from PIL import Image
 from skimage import transform 
 import cv2
