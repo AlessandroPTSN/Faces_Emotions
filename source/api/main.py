@@ -33,7 +33,7 @@ modelwb = load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 color = 0
-
+result = ""
 
 def load(filename):
    image_stream = BytesIO(filename)
@@ -96,6 +96,7 @@ async def read_items():
 # run the model inference and use a face data structure via POST to the API.
 @app.post("/face") 
 async def root(file: UploadFile = File(...)):
+    global result
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
     prediction = np.around(modelwb.predict(load(img)), decimals=2)
