@@ -1,6 +1,8 @@
 pytest
+fastapi
 numpy
 keras
+wandb
 uvicorn
 pydantic
 tensorflow-cpu
@@ -9,4 +11,3 @@ opencv-python-headless
 pathlib
 pillow
 scikit-image
-fastapi
