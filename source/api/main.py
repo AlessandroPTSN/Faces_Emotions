@@ -28,7 +28,7 @@ from fastapi.responses import HTMLResponse
 #modelwb = load_model(wandb.restore('model_.h5', run_path="alessandroptsn/uncategorized/2joxlwx7").name)
 #modelwb = load_model(wandb.restore('modell.h5', run_path="alessandroptsn/uncategorized/15qco71g").name)
 #modelwb = load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name)
-
+modelwb = load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/2iaz2rva").name)
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 color = 0
@@ -95,7 +95,7 @@ async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
     #prediction = ','.join(str(x) for x in  np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2))
-    prediction = str(np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/2iaz2rva").name).predict(load(img)), decimals=2).argmax())
+    prediction = str(np.around(modelwb.predict(load(img)), decimals=2).argmax())
     #return prediction
     #string = ','.join(str(x) for x in prediction)
     if prediction == '0':
