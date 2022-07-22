@@ -46,10 +46,10 @@ def load(filename):
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
        color = foto[y:y+h, x:x+w]
    color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   color=cv2.resize(color,(20,20))
+   color=cv2.resize(color,(48,48))
    color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
 
-   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (20, 20, 1)), axis=0)
+   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (48, 48, 1)), axis=0)
    return imagee
 
 
