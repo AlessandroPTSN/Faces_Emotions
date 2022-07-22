@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile,File
 from io import BytesIO 
 import numpy as np
 from keras.models import load_model
-import wandb
+#import wandb
 from PIL import Image
 from skimage import transform 
 import cv2
@@ -27,7 +27,7 @@ from fastapi.responses import HTMLResponse
 
 #modelwb = load_model(wandb.restore('model_.h5', run_path="alessandroptsn/uncategorized/2joxlwx7").name)
 #modelwb = load_model(wandb.restore('modell.h5', run_path="alessandroptsn/uncategorized/15qco71g").name)
-modelwb = load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/fmpzwzvv").name)
+#modelwb = load_model('model_emotions.h5')
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
@@ -46,10 +46,11 @@ def load(filename):
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
        color = foto[y:y+h, x:x+w]
    color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   color=cv2.resize(color,(20,20))
+   color=cv2.resize(color,(48,48))
    color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
 
-   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (20, 20, 1)), axis=0)
+   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (48, 48, 1)), axis=0)
+   color = 0
    return imagee
 
 
@@ -93,18 +94,18 @@ async def read_items():
 async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
-    prediction = np.around(modelwb.predict(load(img)), decimals=2)
+    prediction = np.around(load_model('model_emotions.h5').predict(load(img)), decimals=2)
     string = ','.join(str(x) for x in prediction)
     if string == "[1. 0. 0. 0. 0. 0.]":
-        result = "Surprise"
+        result = "Angry"
     if string == "[0. 1. 0. 0. 0. 0.]":
-        result = "Sad"
-    if string == "[0. 0. 1. 0. 0. 0.]":
-        result = "Neutral"        
-    if string == "[0. 0. 0. 1. 0. 0.]":
-        result = "Happy"
-    if string == "[0. 0. 0. 0. 1. 0.]":
         result = "Fear"
+    if string == "[0. 0. 1. 0. 0. 0.]":
+        result = "Happy"       
+    if string == "[0. 0. 0. 1. 0. 0.]":
+        result = "Neutral" 
+    if string == "[0. 0. 0. 0. 1. 0.]":
+        result = "Sad"
     if string == "[0. 0. 0. 0. 0. 1.]":
-        result = "Angry"        
+        result = "Surprise"        
     return result
