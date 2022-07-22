@@ -1,7 +1,7 @@
 pytest
 numpy
+fastapi
 keras
-wandb
 uvicorn
 pydantic
 tensorflow-cpu
