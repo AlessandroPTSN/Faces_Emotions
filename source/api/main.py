@@ -27,12 +27,12 @@ from fastapi.responses import HTMLResponse
 
 #modelwb = load_model(wandb.restore('model_.h5', run_path="alessandroptsn/uncategorized/2joxlwx7").name)
 #modelwb = load_model(wandb.restore('modell.h5', run_path="alessandroptsn/uncategorized/15qco71g").name)
-#modelwb = load_model('model_emotions.h5')
-
 modelwb = load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/fmpzwzvv").name)
+
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 color = 0
+
 
 def load(filename):
    image_stream = BytesIO(filename)
@@ -46,11 +46,10 @@ def load(filename):
        cv2.rectangle(foto, (x,y), (x+w, y+h), (0,0,255), 2)
        color = foto[y:y+h, x:x+w]
    color=cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)
-   color=cv2.resize(color,(48,48))
+   color=cv2.resize(color,(20,20))
    color = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
 
-   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (48, 48, 1)), axis=0)
-   color = 0
+   imagee = np.expand_dims(transform.resize(np.array(color).astype('float32'), (20, 20, 1)), axis=0)
    return imagee
 
 
@@ -88,6 +87,7 @@ app = FastAPI()
 @app.get("/", response_class=HTMLResponse)
 async def read_items():
     return generate_html_response()
+
 
 # run the model inference and use a face data structure via POST to the API.
 @app.post("/face") 
