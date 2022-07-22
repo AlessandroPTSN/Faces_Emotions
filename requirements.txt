@@ -1,5 +1,4 @@
 pytest
-fastapi
 numpy
 keras
 uvicorn
@@ -10,4 +9,4 @@ opencv-python-headless
 pathlib
 pillow
 scikit-image
-
+fastapi
