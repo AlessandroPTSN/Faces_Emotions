@@ -1,6 +1,6 @@
 pytest
-numpy
 fastapi
+numpy
 keras
 uvicorn
 pydantic
