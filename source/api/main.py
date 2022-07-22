@@ -95,7 +95,7 @@ async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
     #prediction = ','.join(str(x) for x in  np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2))
-    prediction = str(np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2).argmax())
+    prediction = str(np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/2iaz2rva").name).predict(load(img)), decimals=2).argmax())
     #return prediction
     #string = ','.join(str(x) for x in prediction)
     if prediction == '0':
