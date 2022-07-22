@@ -94,18 +94,20 @@ async def read_items():
 async def root(file: UploadFile = File(...)):
     img = await  file.read()   
     #prediction = np.around(modelwb.predict(load3(load2(load(img)))), decimals=2)
-    prediction = np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2)
-    string = ','.join(str(x) for x in prediction)
-    if string == "[1. 0. 0. 0. 0. 0.]":
-        result = "Angry"
-    if string == "[0. 1. 0. 0. 0. 0.]":
-        result = "Fear"
-    if string == "[0. 0. 1. 0. 0. 0.]":
-        result = "Happy"       
-    if string == "[0. 0. 0. 1. 0. 0.]":
-        result = "Neutral" 
-    if string == "[0. 0. 0. 0. 1. 0.]":
-        result = "Sad"
-    if string == "[0. 0. 0. 0. 0. 1.]":
-        result = "Surprise"        
-    return result
+    #prediction = ','.join(str(x) for x in  np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2))
+    prediction = str(np.around(load_model(wandb.restore('model_emotions.h5', run_path="alessandroptsn/uncategorized/3rm44sap").name).predict(load(img)), decimals=2).argmax())
+    #return prediction
+    #string = ','.join(str(x) for x in prediction)
+    if prediction == '0':
+        return "Angry"
+    if prediction == '1':
+        return "Fear"
+    if prediction == '2':
+        return "Happy"       
+    if prediction == '3':
+        return "Neutral" 
+    if prediction == '4':
+        return "Sad"
+    if prediction == '5':
+        return "Surprise"        
+    #return result
