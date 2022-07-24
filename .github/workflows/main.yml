@@ -28,7 +28,7 @@ jobs:
       
       - name: Install dependences
       
-        run: -m pip install --upgrade pip -r requirements.txt
+        run: pip install --upgrade pip -r requirements.txt
           
       - name: Login in wandb
         run: 
