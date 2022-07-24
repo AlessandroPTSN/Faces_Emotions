@@ -27,7 +27,8 @@ jobs:
           python-version: 3.8
       
       - name: Install dependences
-        run: pip install --upgrade pip && pip install -r requirements.txt
+      
+        run: -m pip install --upgrade pip -r requirements.txt
           
       - name: Login in wandb
         run: 
