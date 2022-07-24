@@ -1,7 +1,11 @@
 # Faces_Emotions
 
 ## Introduction
-This project consists of building a convolutional neural network model that classifies the emotion that a face shows in a given photo. The convolutional neural network consists of multiple layers: convolucional, dense(ReLU), Batch Normalization, Max Pooling, Dropout, Flatten and a Dense(Softmax) layer to classify the emotion.
+This project consists of building a convolutional neural network model that classifies the emotion that a face shows in a given photo. Once the model is created, save it to W&B and create an API hosted on Heroku that makes the created model available for production. 
+
+![ezgif-1-19553b9037](https://user-images.githubusercontent.com/50224653/180656572-6860869a-7043-48be-836e-655317298e03.gif)
+
+The convolutional neural network consists of multiple layers: convolucional, dense(ReLU), Batch Normalization, Max Pooling, Dropout, Flatten and a Dense(Softmax) layer to classify the emotion.
 
 The data consists of 48x48 pixels grayscale images of faces. The faces have been automatically registered.
 The task is to categorize each face based on the emotion shown in the facial expression into one of six categories (0=Angry, 1=Fear, 2=Happy, 3=Sad, 4=Surprise, 5=Neutral). The training set consists of 35,342 examples
