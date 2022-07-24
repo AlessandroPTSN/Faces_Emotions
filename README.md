@@ -1,7 +1,7 @@
 # Faces_Emotions
 
 ## Introduction
-This project consists of building a neural network model that classifies the emotion that a face shows in a given photo. The neural network consists of multiple ReLU layers and a Softmax layer to classify the emotion.
+This project consists of building a convolucional neural network model that classifies the emotion that a face shows in a given photo. The convolucional neural network consists of multiple ReLU layers and a Softmax layer to classify the emotion.
 
 The data consists of 48x48 pixels grayscale images of faces. The faces have been automatically registered.
 The task is to categorize each face based on the emotion shown in the facial expression into one of six categories (0=Angry, 1=Fear, 2=Happy, 3=Sad, 4=Surprise, 5=Neutral). The training set consists of 35,342 examples
