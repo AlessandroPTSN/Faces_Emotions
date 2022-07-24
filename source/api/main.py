@@ -44,7 +44,7 @@ def generate_html_response():
    <section>
     <h2 >Faces Emotions</h2>
      <p><i>A API created by Alessandro Pereira</i></p>
-     <p>This project consists of building a neural network model that classifies the emotion that a face shows in a given photo. The neural network consists of multiple ReLU layers and a Softmax layer to classify the emotion. For more information about the work, files and API can be found in the links below:</p>
+     <p>This project consists of building a convolutional neural network model that classifies the emotion that a face shows in a given photo. The convolutional neural network consists of multiple ReLU layers and a Softmax layer to classify the emotion. For more information about the work, files and API can be found in the links below:</p>
    <p><a href="https://github.com/AlessandroPTSN/Faces_Emotions">Github</a> <a href="https://medium.com/@alessandro.pereira.700">Mediun</a> <a href="https://faces-emotions.herokuapp.com/docs">FastAPI</a> <a href="https://colab.research.google.com/drive/1HXjcL0o-oEKmGEvturoNI07PiuZMvW0a?usp=sharing">Colab</a> </p>
    </section>
    </body>
