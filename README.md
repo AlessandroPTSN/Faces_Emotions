@@ -14,7 +14,7 @@ The task is to categorize each face based on the emotion shown in the facial exp
 
 The model was deployed to the web using the FastAPI package and API tests were created. The API tests will be embedded in a CI/CD framework using GitHub Actions. After we built our API locally and tested it, we deployed it to Heroku and tested it again live. Weights and Biases were used to manage the model.
 
-<img align="center" src="https://github.com/Morsinaldo/credit_risk_mlops/blob/main/images/Model_card.png" />
+![Model_card](https://user-images.githubusercontent.com/50224653/180670210-78f67337-0ac3-4fe5-8f25-4a778684e771.png)
 
 So, in general, the notebook used is divided into 7 parts:
 
