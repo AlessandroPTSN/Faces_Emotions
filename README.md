@@ -125,8 +125,6 @@ heroku run bash --app faces-emotions
 heroku logs
 ```
 
-## About me
-I'm a student of the Postgraduate Program in Electrical and Computer Engineering (PPgEEC) at the Federal University of Rio Grande do Norte (UFRN). As the second project of the [EEC1509](https://github.com/ivanovitchm/ppgeecmachinelearning) — Machine Learning course taught by [Ivanovitch Silva](https://github.com/ivanovitchm), the project consists in take a classic neural network model and adapted it to a pipeline, which contains good standardization practices in order to put the created model into production.
 
 ## References
 
