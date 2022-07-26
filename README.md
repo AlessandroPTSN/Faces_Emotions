@@ -3,6 +3,9 @@
 ## Introduction
 This project consists of building a convolutional neural network model that classifies the emotion that a face shows in a given photo. Once the model is created, save it to W&B and create an API hosted on Heroku that makes the created model available for production. 
 
+Medium: [Link](https://medium.com/@alessandro.pereira.700/deploy-neural-network-models-into-production-b8438843f224)  
+API: [Link](https://faces-emotions.herokuapp.com)  
+
 ![ezgif-1-19553b9037](https://user-images.githubusercontent.com/50224653/180656572-6860869a-7043-48be-836e-655317298e03.gif)
 
 The convolutional neural network consists of multiple layers: convolucional, dense(ReLU), Batch Normalization, Max Pooling, Dropout, Flatten and a Dense(Softmax) layer to classify the emotion.
